@@ -12,7 +12,6 @@
       padding: 0;
       overflow: hidden;
       font-family: 'Inter', sans-serif;
-      cursor: pointer; /* Indica que se puede hacer clic para reproducir música */
     }
 
     body {
@@ -120,6 +119,26 @@
       to { opacity: 0; transform: translateY(-20px); }
     }
 
+    /* Botón de música */
+    #musicBtn {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 200;
+      padding: 10px 15px;
+      background-color: #ff74a4;
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #ff74a4;
+    }
+
+    #musicBtn:hover {
+      background-color: #ff4d88;
+    }
+
   </style>
 </head>
 <body>
@@ -139,7 +158,10 @@
     <h1 class="message-text"></h1>
   </div>
 
-  <!-- Música -->
+  <!-- Botón de música -->
+  <button id="musicBtn">Reproducir música</button>
+
+  <!-- Audio -->
   <audio id="backgroundMusic" loop>
     <source src="audio/musica.mp3" type="audio/mpeg">
     Tu navegador no soporta audio.
@@ -199,16 +221,20 @@
     setTimeout(()=>{messageElement.textContent=poemLines[currentLineIndex];messageElement.classList.add('fade-in')},1000);
     setInterval(showNextLine, displayTime+fadeTime);
 
-    // Música: reproducir al primer clic en la página
+    // Botón de música
     const music = document.getElementById('backgroundMusic');
-    let musicStarted = false;
+    const musicBtn = document.getElementById('musicBtn');
 
-    document.body.addEventListener('click', () => {
-      if (!musicStarted) {
+    musicBtn.addEventListener('click', () => {
+      if (music.paused) {
         music.play();
-        musicStarted = true;
+        musicBtn.textContent = "Pausar música";
+      } else {
+        music.pause();
+        musicBtn.textContent = "Reproducir música";
       }
     });
+
   </script>
 
 </body>
