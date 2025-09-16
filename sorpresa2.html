@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Te la dedico</title>
 <style>
 html, body {
@@ -73,23 +72,6 @@ nav a:hover { color: #ffb3c1; }
   100%{opacity:0;transform:translate(var(--x), var(--y)) scale(0);}
 }
 
-/* Botón de música */
-#musicBtn {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 1000;
-  padding: 8px 12px;
-  background-color: #ff6b8b;
-  border: none;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
-  box-shadow: 0 0 5px #ff6b8b;
-}
-#musicBtn:hover { background-color: #ff4d88; }
-
 /* Responsive */
 @media (max-width: 600px) {
   #poema {
@@ -99,10 +81,6 @@ nav a:hover { color: #ffb3c1; }
   }
   .corazon {
     font-size: 16px;
-  }
-  #musicBtn {
-    padding: 6px 10px;
-    font-size: 0.8rem;
   }
 }
 </style>
@@ -116,11 +94,8 @@ nav a:hover { color: #ffb3c1; }
 
 <div id="poema"></div>
 
-<!-- Botón de música -->
-<button id="musicBtn">Pausar música</button>
-
 <!-- Música -->
-<audio id="backgroundMusic" loop autoplay>
+<audio id="backgroundMusic" autoplay loop>
   <source src="audio/musica2.mp3" type="audio/mpeg">
   Tu navegador no soporta audio.
 </audio>
@@ -169,21 +144,9 @@ function crearCorazon() {
 }
 setInterval(crearCorazon, 600);
 
-// Música autoplay
+// Música se reproduce automáticamente
 const music = document.getElementById('backgroundMusic');
-music.play().catch(()=>console.log("Autoplay bloqueado por el navegador."));
-
-// Botón de música para pausar/reproducir
-const musicBtn = document.getElementById('musicBtn');
-musicBtn.addEventListener('click', () => {
-  if (music.paused) {
-    music.play();
-    musicBtn.textContent = "Pausar música";
-  } else {
-    music.pause();
-    musicBtn.textContent = "Reproducir música";
-  }
-});
+music.play().catch(()=>{}); // evita error si navegador bloquea autoplay
 </script>
 </body>
 </html>
