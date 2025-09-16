@@ -2,94 +2,72 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Girasol y Mensaje 🌻❤️</title>
 <style>
-html, body {
-  width: 100%;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  font-family: 'Georgia', serif;
-  background: linear-gradient(to top, #87CEEB, #E0F7FF);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
+  html, body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(to top, #87CEEB, #E0F7FF);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
 
-nav {
-  position: absolute;
-  top: 10px;
-  width: 100%;
-  text-align: center;
-  z-index: 20;
-}
-nav a {
-  margin: 0 15px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  text-shadow: 0 0 5px #ff74a4;
-  transition: color 0.3s;
-}
-nav a:hover { color: #ffb3c1; }
+  nav {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    text-align: center;
+    z-index: 20;
+  }
+  nav a {
+    margin: 0 15px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    text-shadow: 0 0 5px #ff74a4;
+    transition: color 0.3s;
+  }
+  nav a:hover { color: #ffb3c1; }
 
-svg { max-width: 90vw; max-height: 90vh; z-index: 5; }
+  #mensaje {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #ff6b8b;
+    text-shadow: 0 0 10px #ff74a4, 0 0 20px #ffb3c1;
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    z-index: 15;
+  }
 
-.pasto { fill: #228B22; }
-.dibujar { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: trazo 1.5s ease forwards; }
-@keyframes trazo { to { stroke-dashoffset: 0; } }
+  .corazon {
+    position: absolute;
+    font-size: 20px;
+    color: #ff6b8b;
+    z-index: 10;
+    filter: drop-shadow(0 0 5px #ff74a4);
+  }
 
-.aparecer { opacity: 0; animation: fadeIn 1s ease forwards; }
-@keyframes fadeIn { to { opacity: 1; } }
+  @keyframes disparo-corazon {
+    0%{opacity:.9;transform:translate(0,0) scale(1);}
+    80%{opacity:1;transform:translate(var(--x), var(--y)) scale(1.5);}
+    100%{opacity:0;transform:translate(var(--x), var(--y)) scale(0);}
+  }
 
-.corazon {
-  position: absolute;
-  font-size: 20px;
-  color: #ff6b8b;
-  will-change: transform, opacity;
-  z-index: 15;
-  filter: drop-shadow(0 0 5px #ff74a4);
-}
-@keyframes disparo-corazon {
-  0% { opacity:0.9; transform:translate(0,0) scale(1); }
-  80% { opacity:1; transform:translate(var(--x), var(--y)) scale(1.5); }
-  100% { opacity:0; transform:translate(var(--x), var(--y)) scale(0); }
-}
+  svg {
+    width: 90%;
+    height: auto;
+    max-width: 500px;
+  }
 
-/* Mensaje en el rectángulo de pasto */
-#mensaje {
-  position: absolute;
-  bottom: 50px;
-  width: 100%;
-  text-align: center;
-  color: #fff;
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  text-shadow: 0 0 10px #ff74a4, 0 0 20px #ffb3c1;
-  opacity: 0;
-  z-index: 10;
-  animation: glow 1.5s ease forwards;
-}
-@keyframes glow {
-  0% { text-shadow: 0 0 5px #ff74a4; opacity: 0; }
-  100% { text-shadow: 0 0 20px #ffb3c1, 0 0 40px #ff74a4; opacity: 1; }
-}
-
-/* Mariposas */
-.mariposa {
-  position: absolute;
-  font-size: 18px;
-  color: #ffdf00;
-  opacity: 0.8;
-  animation: volar 6s linear infinite;
-}
-@keyframes volar {
-  0% { transform: translate(0,0) rotate(0deg); opacity:0; }
-  20% { opacity:1; }
-  80% { opacity:1; }
-  100% { transform: translate(200px,-200px) rotate(360deg); opacity:0; }
-}
 </style>
 </head>
 <body>
@@ -100,31 +78,25 @@ svg { max-width: 90vw; max-height: 90vh; z-index: 5; }
   <a href="sorpresa2.html">Sorpresa 2</a>
 </nav>
 
-<audio id="backgroundMusic" loop>
-  <source src="audio/musica3.mp3" type="audio/mpeg">
-</audio>
-
-<div id="mensaje"></div>
+<div id="mensaje">🌻 ¡Feliz Día! 🌻</div>
 
 <svg viewBox="0 0 800 700">
-  <circle cx="650" cy="100" r="60" fill="yellow" filter="url(#solGlow)"/>
-  <rect y="600" width="800" height="100" class="pasto" />
-  <line x1="400" y1="400" x2="400" y2="600" stroke="green" stroke-width="14" class="dibujar"/>
-  <path d="M400,500 C330,460 320,550 400,560" fill="none" stroke="green" stroke-width="10" class="dibujar"/>
-  <path d="M400,460 C470,420 480,520 400,530" fill="none" stroke="green" stroke-width="10" class="dibujar"/>
+  <!-- Pasto -->
+  <rect y="600" width="800" height="100" fill="#228B22" />
 
+  <!-- Tallo -->
+  <line x1="400" y1="400" x2="400" y2="600" stroke="green" stroke-width="14"/>
+
+  <!-- Hojas -->
+  <path d="M400,500 C330,460 320,550 400,560" fill="none" stroke="green" stroke-width="10"/>
+  <path d="M400,460 C470,420 480,520 400,530" fill="none" stroke="green" stroke-width="10"/>
+
+  <!-- Girasol -->
   <g transform="translate(400,300)">
+    <!-- Pétalos -->
     <defs>
-      <filter id="solGlow" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur stdDeviation="8" result="blur"/>
-        <feMerge>
-          <feMergeNode in="blur"/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>
       <path id="petalo" d="M0,0 C30,-100 60,-150 0,-200 C-60,-150 -30,-100 0,0" stroke="orange" fill="gold" stroke-width="2"/>
     </defs>
-
     <g id="petalos">
       <script type="text/ecmascript">
         const petaloGroup = document.currentScript.parentNode;
@@ -132,39 +104,29 @@ svg { max-width: 90vw; max-height: 90vh; z-index: 5; }
           const use = document.createElementNS("http://www.w3.org/2000/svg","use");
           use.setAttributeNS("http://www.w3.org/1999/xlink","href","#petalo");
           use.setAttribute("transform","rotate("+(i*20)+")");
-          use.setAttribute("class","aparecer");
-          use.style.animationDelay = (i*0.2)+"s";
           petaloGroup.appendChild(use);
         }
       </script>
     </g>
 
-    <circle r="70" fill="#6b3e26" class="aparecer" style="animation-delay:4s"/>
-    <g id="semillas">
-      <circle cx="0" cy="0" r="4" fill="saddlebrown" class="aparecer" style="animation-delay:4.2s"/>
-      <circle cx="10" cy="5" r="4" fill="saddlebrown" class="aparecer" style="animation-delay:4.4s"/>
-      <circle cx="-12" cy="-8" r="4" fill="saddlebrown" class="aparecer" style="animation-delay:4.6s"/>
-      <circle cx="15" cy="-12" r="4" fill="saddlebrown" class="aparecer" style="animation-delay:4.8s"/>
-    </g>
+    <!-- Centro -->
+    <circle r="70" fill="#6b3e26"/>
+
+    <!-- Semillas -->
+    <circle cx="0" cy="0" r="5" fill="saddlebrown"/>
+    <circle cx="10" cy="5" r="5" fill="saddlebrown"/>
+    <circle cx="-12" cy="-8" r="5" fill="saddlebrown"/>
+    <circle cx="15" cy="-12" r="5" fill="saddlebrown"/>
   </g>
 </svg>
 
-<script>
-// Música adaptada a móviles
-const music = document.getElementById('backgroundMusic');
-window.addEventListener('load', () => {
-  const playPromise = music.play();
-  if (playPromise !== undefined) {
-    playPromise.catch(() => {
-      function activarAudio() {
-        music.play();
-        window.removeEventListener('click', activarAudio);
-      }
-      window.addEventListener('click', activarAudio);
-    });
-  }
-});
+<!-- Música -->
+<audio id="backgroundMusic" autoplay loop>
+  <source src="audio/musica2.mp3" type="audio/mpeg">
+  Tu navegador no soporta audio.
+</audio>
 
+<script>
 // Corazones flotantes
 function crearCorazon(){
   const corazon=document.createElement("div");
@@ -181,35 +143,7 @@ function crearCorazon(){
   setTimeout(()=>corazon.remove(),3000);
 }
 setInterval(crearCorazon,600);
-
-// Mensaje en el pasto
-const mensajeTexto = "🌻 ¡Feliz Día de las Flores Amarillas! 🌻";
-const mensajeDiv = document.getElementById('mensaje');
-let index = 0;
-function escribirMensaje() {
-  if(index < mensajeTexto.length){
-    mensajeDiv.style.opacity = 1;
-    mensajeDiv.innerHTML += mensajeTexto.charAt(index);
-    index++;
-    setTimeout(escribirMensaje, 100);
-  }
-}
-setTimeout(escribirMensaje, 1000);
-
-// Mariposas
-function crearMariposa(){
-  const m = document.createElement("div");
-  m.classList.add("mariposa");
-  m.innerHTML = "🦋";
-  m.style.left = Math.random()*70+"vw";
-  m.style.top = Math.random()*50+"vh";
-  document.body.appendChild(m);
-  setTimeout(()=> m.remove(), 6000);
-}
-setInterval(crearMariposa, 4000);
 </script>
 
 </body>
-</html>
-
 </html>
