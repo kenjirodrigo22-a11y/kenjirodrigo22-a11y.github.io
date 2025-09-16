@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Poema 2</title>
+</head>
+<body style="background:#222; color:white; font-family:sans-serif; text-align:center; padding:50px;">
+  <nav>
+    <a href="index.html" style="margin: 0 15px; color:lightblue; text-decoration:none;">Inicio</a>
+    <a href="poema2.html" style="margin: 0 15px; color:lightblue; text-decoration:none;">Poema 2</a>
+    <a href="proyecto.html" style="margin: 0 15px; color:lightblue; text-decoration:none;">Proyecto</a>
+  </nav>
+
+  <h1>Un nuevo poema ✨</h1>
+  <p>"Tus ojos son estrellas en la noche,  
+     tu sonrisa es el faro que me guía."</p>
+</body>
+</html>
