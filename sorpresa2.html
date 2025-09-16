@@ -28,6 +28,7 @@
       width: 100%;
       z-index: 100;
     }
+
     nav a {
       margin: 0 15px;
       color: #fff;
@@ -36,6 +37,7 @@
       text-shadow: 0 0 5px #ff74a4;
       transition: color 0.3s ease;
     }
+
     nav a:hover {
       color: #ffb3c1;
     }
@@ -51,9 +53,11 @@
       margin: 0 auto;
       word-break: break-word;
     }
+
     .cursor {
       animation: parpadeo 0.8s infinite;
     }
+
     @keyframes parpadeo {
       0%,100%{opacity:1;}
       50%{opacity:.3;}
@@ -66,6 +70,7 @@
       z-index: 9;
       color: #ff6b8b;
     }
+
     @keyframes disparo-corazon {
       0%{opacity:.9;transform:translate(0,0) scale(1);}
       80%{opacity:1;transform:translate(var(--x), var(--y)) scale(1.5);}
@@ -78,7 +83,7 @@
       top: 10px;
       right: 10px;
       z-index: 1000;
-      padding: 10px 15px;
+      padding: 8px 12px;
       background-color: #ff6b8b;
       border: none;
       color: #fff;
@@ -87,6 +92,7 @@
       border-radius: 5px;
       box-shadow: 0 0 5px #ff6b8b;
     }
+
     #musicBtn:hover {
       background-color: #ff4d88;
     }
@@ -118,9 +124,8 @@
   </audio>
 
   <script>
-    // Efecto de escritura
+    // Poema con escritura letra por letra
     const texto = `Te la dedico ❤️
-    
 Cada palabra que escribo
 late al ritmo de mi corazón.
 Eres mi inspiración,
@@ -140,7 +145,7 @@ mi razón, mi canción.`;
     }
     escribir();
 
-    // Corazones animados
+    // Corazones flotantes
     function crearCorazon() {
       const corazon = document.createElement("div");
       corazon.classList.add("corazon");
@@ -163,7 +168,7 @@ mi razón, mi canción.`;
 
     setInterval(crearCorazon, 600);
 
-    // Música con botón
+    // Control de música
     const music = document.getElementById('backgroundMusic');
     const musicBtn = document.getElementById('musicBtn');
 
