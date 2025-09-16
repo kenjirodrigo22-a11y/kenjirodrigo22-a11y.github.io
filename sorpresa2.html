@@ -1,187 +1,186 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <title>Te la dedico</title>
-  <style>
-    html, body {
-      width: 100%;
-      height: 100vh;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      font-family: 'Georgia', serif;
-      background: radial-gradient(ellipse at bottom, #00087a, #1a0009);
-      color: #ff6b8b;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      position: relative;
-    }
+<meta charset="UTF-8">
+<title>Te la dedico</title>
+<style>
+html, body {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Georgia', serif;
+  background: radial-gradient(ellipse at bottom, #00087a, #1a0009);
+  color: #ff6b8b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
 
-    nav {
-      text-align: center;
-      position: absolute;
-      top: 10px;
-      width: 100%;
-      z-index: 100;
-    }
+nav {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  text-align: center;
+  z-index: 100;
+}
+nav a {
+  margin: 0 15px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  text-shadow: 0 0 5px #ff74a4;
+  transition: color 0.3s;
+}
+nav a:hover { color: #ffb3c1; }
 
-    nav a {
-      margin: 0 15px;
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      text-shadow: 0 0 5px #ff74a4;
-      transition: color 0.3s ease;
-    }
+/* Poema */
+#poema {
+  font-size: 2.5vw;
+  white-space: pre-line;
+  text-shadow: 0 0 10px rgba(255, 107, 139, 0.5);
+  position: relative;
+  z-index: 2;
+  max-width: 90vw;
+  margin: 0 auto;
+  word-break: break-word;
+}
+.cursor {
+  animation: parpadeo 0.8s infinite;
+}
+@keyframes parpadeo {
+  0%,100%{opacity:1;}
+  50%{opacity:.3;}
+}
 
-    nav a:hover {
-      color: #ffb3c1;
-    }
+/* Corazones flotantes */
+.corazon {
+  position: absolute;
+  font-size: 20px;
+  will-change: transform, opacity;
+  z-index: 9;
+  color: #ff6b8b;
+  filter: drop-shadow(0 0 5px #ff74a4);
+}
+@keyframes disparo-corazon {
+  0%{opacity:.9;transform:translate(0,0) scale(1);}
+  80%{opacity:1;transform:translate(var(--x), var(--y)) scale(1.5);}
+  100%{opacity:0;transform:translate(var(--x), var(--y)) scale(0);}
+}
 
-    /* Poema */
-    #poema {
-      font-size: 2.1vw;
-      white-space: pre-line;
-      text-shadow: 0 0 10px rgba(255, 107, 139, 0.5);
-      position: relative;
-      z-index: 2;
-      max-width: 95vw;
-      margin: 0 auto;
-      word-break: break-word;
-    }
+/* Botón de música */
+#musicBtn {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  padding: 8px 12px;
+  background-color: #ff6b8b;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #ff6b8b;
+}
+#musicBtn:hover { background-color: #ff4d88; }
 
-    .cursor {
-      animation: parpadeo 0.8s infinite;
-    }
-
-    @keyframes parpadeo {
-      0%,100%{opacity:1;}
-      50%{opacity:.3;}
-    }
-
-    .corazon {
-      position: absolute;
-      font-size: 20px;
-      will-change: transform, opacity;
-      z-index: 9;
-      color: #ff6b8b;
-    }
-
-    @keyframes disparo-corazon {
-      0%{opacity:.9;transform:translate(0,0) scale(1);}
-      80%{opacity:1;transform:translate(var(--x), var(--y)) scale(1.5);}
-      100%{opacity:0;transform:translate(var(--x), var(--y)) scale(0);}
-    }
-
-    /* Botón de música */
-    #musicBtn {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      z-index: 1000;
-      padding: 8px 12px;
-      background-color: #ff6b8b;
-      border: none;
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 5px;
-      box-shadow: 0 0 5px #ff6b8b;
-    }
-
-    #musicBtn:hover {
-      background-color: #ff4d88;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      #poema {
-        font-size: 5vw;
-      }
-    }
-  </style>
+/* Responsive */
+@media (max-width: 600px) {
+  #poema {
+    font-size: 6vw;
+    max-width: 95vw;
+    line-height: 1.4;
+  }
+  .corazon {
+    font-size: 16px;
+  }
+  #musicBtn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}
+</style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Inicio</a>
-    <a href="sorpresa.html">Sorpresa</a>
-    <a href="sorpresa2.html">Sorpresa 2</a>
-  </nav>
+<nav>
+  <a href="index.html">Inicio</a>
+  <a href="sorpresa.html">Sorpresa</a>
+  <a href="sorpresa2.html">Sorpresa 2</a>
+</nav>
 
-  <div id="poema"></div>
+<div id="poema"></div>
 
-  <!-- Botón de música -->
-  <button id="musicBtn">Reproducir música</button>
+<!-- Botón de música -->
+<button id="musicBtn">Reproducir música</button>
 
-  <!-- Música -->
-  <audio id="backgroundMusic" loop>
-    <source src="audio/musica2.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio.
-  </audio>
+<!-- Música -->
+<audio id="backgroundMusic" loop>
+  <source src="audio/musica2.mp3" type="audio/mpeg">
+  Tu navegador no soporta audio.
+</audio>
 
-  <script>
-    // Poema con escritura letra por letra
-    const texto = `Te la dedico ❤️
+<script>
+// Poema letra por letra
+const texto = `Te la dedico ❤️
 Cada palabra que escribo
 late al ritmo de mi corazón.
 Eres mi inspiración,
 mi razón, mi canción.`;
 
-    const contenedor = document.getElementById("poema");
-    let i = 0;
+const contenedor = document.getElementById("poema");
+let i = 0;
 
-    function escribir() {
-      if (i < texto.length) {
-        contenedor.innerHTML = texto.substring(0, i+1) + '<span class="cursor">|</span>';
-        i++;
-        setTimeout(escribir, 80);
-      } else {
-        contenedor.innerHTML = texto;
-      }
-    }
-    escribir();
+function escribir() {
+  if (i < texto.length) {
+    contenedor.innerHTML = texto.substring(0, i+1) + '<span class="cursor">|</span>';
+    i++;
+    setTimeout(escribir, 80);
+  } else {
+    contenedor.innerHTML = texto;
+  }
+}
+escribir();
 
-    // Corazones flotantes
-    function crearCorazon() {
-      const corazon = document.createElement("div");
-      corazon.classList.add("corazon");
-      corazon.innerHTML = "❤";
+// Corazones flotantes
+function crearCorazon() {
+  const corazon = document.createElement("div");
+  corazon.classList.add("corazon");
+  corazon.innerHTML = "❤";
 
-      corazon.style.left = Math.random() * 100 + "vw";
-      corazon.style.top = "90vh";
+  corazon.style.left = Math.random() * 100 + "vw";
+  corazon.style.top = "90vh";
 
-      const x = (Math.random() * 200 - 100) + "px";
-      const y = "-"+(Math.random() * 200 + 200) + "px";
-      corazon.style.setProperty("--x", x);
-      corazon.style.setProperty("--y", y);
+  const x = (Math.random() * 200 - 100) + "px";
+  const y = "-"+(Math.random() * 200 + 200) + "px";
+  corazon.style.setProperty("--x", x);
+  corazon.style.setProperty("--y", y);
 
-      corazon.style.animation = "disparo-corazon 3s linear forwards";
+  corazon.style.animation = "disparo-corazon 3s linear forwards";
 
-      document.body.appendChild(corazon);
+  document.body.appendChild(corazon);
 
-      setTimeout(() => corazon.remove(), 3000);
-    }
+  setTimeout(() => corazon.remove(), 3000);
+}
+setInterval(crearCorazon, 600);
 
-    setInterval(crearCorazon, 600);
+// Control de música
+const music = document.getElementById('backgroundMusic');
+const musicBtn = document.getElementById('musicBtn');
 
-    // Control de música
-    const music = document.getElementById('backgroundMusic');
-    const musicBtn = document.getElementById('musicBtn');
-
-    musicBtn.addEventListener('click', () => {
-      if (music.paused) {
-        music.play();
-        musicBtn.textContent = "Pausar música";
-      } else {
-        music.pause();
-        musicBtn.textContent = "Reproducir música";
-      }
-    });
-  </script>
+musicBtn.addEventListener('click', () => {
+  if (music.paused) {
+    music.play();
+    musicBtn.textContent = "Pausar música";
+  } else {
+    music.pause();
+    musicBtn.textContent = "Reproducir música";
+  }
+});
+</script>
 </body>
 </html>
-
