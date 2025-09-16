@@ -72,6 +72,25 @@
       100%{opacity:0;transform:translate(var(--x), var(--y)) scale(0);}
     }
 
+    /* Botón de música */
+    #musicBtn {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+      padding: 10px 15px;
+      background-color: #ff6b8b;
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #ff6b8b;
+    }
+    #musicBtn:hover {
+      background-color: #ff4d88;
+    }
+
     /* Responsive */
     @media (max-width: 600px) {
       #poema {
@@ -89,7 +108,17 @@
 
   <div id="poema"></div>
 
+  <!-- Botón de música -->
+  <button id="musicBtn">Reproducir música</button>
+
+  <!-- Música -->
+  <audio id="backgroundMusic" loop>
+    <source src="audio/musica.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio>
+
   <script>
+    // Efecto de escritura
     const texto = `Te la dedico ❤️
     
 Cada palabra que escribo
@@ -111,6 +140,7 @@ mi razón, mi canción.`;
     }
     escribir();
 
+    // Corazones animados
     function crearCorazon() {
       const corazon = document.createElement("div");
       corazon.classList.add("corazon");
@@ -132,6 +162,21 @@ mi razón, mi canción.`;
     }
 
     setInterval(crearCorazon, 600);
+
+    // Música con botón
+    const music = document.getElementById('backgroundMusic');
+    const musicBtn = document.getElementById('musicBtn');
+
+    musicBtn.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+        musicBtn.textContent = "Pausar música";
+      } else {
+        music.pause();
+        musicBtn.textContent = "Reproducir música";
+      }
+    });
   </script>
 </body>
 </html>
+
