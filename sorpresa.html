@@ -35,22 +35,6 @@ nav a {
 }
 nav a:hover { color: #ffb3c1; }
 
-#musicBtn {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 20;
-  padding: 8px 12px;
-  background-color: #ff6b8b;
-  border: none;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
-  box-shadow: 0 0 5px #ff6b8b;
-}
-#musicBtn:hover { background-color: #ff4d88; }
-
 svg { max-width: 90vw; max-height: 90vh; z-index: 5; }
 
 .pasto { fill: #228B22; }
@@ -77,7 +61,7 @@ svg { max-width: 90vw; max-height: 90vh; z-index: 5; }
 /* Mensaje en el rectángulo de pasto */
 #mensaje {
   position: absolute;
-  bottom: 30px;
+  bottom: 50px;
   width: 100%;
   text-align: center;
   color: #fff;
@@ -116,7 +100,6 @@ svg { max-width: 90vw; max-height: 90vh; z-index: 5; }
   <a href="sorpresa2.html">Sorpresa 2</a>
 </nav>
 
-<button id="musicBtn">Reproducir música</button>
 <audio id="backgroundMusic" loop>
   <source src="audio/musica3.mp3" type="audio/mpeg">
 </audio>
@@ -167,57 +150,66 @@ svg { max-width: 90vw; max-height: 90vh; z-index: 5; }
 </svg>
 
 <script>
-  // Música
-  const music = document.getElementById('backgroundMusic');
-  const musicBtn = document.getElementById('musicBtn');
-  musicBtn.addEventListener('click', ()=>{
-    if(music.paused){ music.play(); musicBtn.textContent="Pausar música";}
-    else{ music.pause(); musicBtn.textContent="Reproducir música";}
-  });
-
-  // Corazones flotantes
-  function crearCorazon(){
-    const corazon=document.createElement("div");
-    corazon.classList.add("corazon");
-    corazon.innerHTML="❤";
-    corazon.style.left=Math.random()*100+"vw";
-    corazon.style.top="90vh";
-    const x=(Math.random()*200-100)+"px";
-    const y="-"+(Math.random()*200+200)+"px";
-    corazon.style.setProperty("--x",x);
-    corazon.style.setProperty("--y",y);
-    corazon.style.animation="disparo-corazon 3s linear forwards";
-    document.body.appendChild(corazon);
-    setTimeout(()=>corazon.remove(),3000);
+// Música adaptada a móviles
+const music = document.getElementById('backgroundMusic');
+window.addEventListener('load', () => {
+  const playPromise = music.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      function activarAudio() {
+        music.play();
+        window.removeEventListener('click', activarAudio);
+      }
+      window.addEventListener('click', activarAudio);
+    });
   }
-  setInterval(crearCorazon,600);
+});
 
-  // Mensaje
-  const mensajeTexto = "🌻 ¡Feliz Día de las Flores Amarillas! 🌻";
-  const mensajeDiv = document.getElementById('mensaje');
-  let index = 0;
-  function escribirMensaje() {
-    if(index < mensajeTexto.length){
-      mensajeDiv.style.opacity = 1;
-      mensajeDiv.innerHTML += mensajeTexto.charAt(index);
-      index++;
-      setTimeout(escribirMensaje, 100);
-    }
-  }
-  setTimeout(escribirMensaje, 1000);
+// Corazones flotantes
+function crearCorazon(){
+  const corazon=document.createElement("div");
+  corazon.classList.add("corazon");
+  corazon.innerHTML="❤";
+  corazon.style.left=Math.random()*100+"vw";
+  corazon.style.top="90vh";
+  const x=(Math.random()*200-100)+"px";
+  const y="-"+(Math.random()*200+200)+"px";
+  corazon.style.setProperty("--x",x);
+  corazon.style.setProperty("--y",y);
+  corazon.style.animation="disparo-corazon 3s linear forwards";
+  document.body.appendChild(corazon);
+  setTimeout(()=>corazon.remove(),3000);
+}
+setInterval(crearCorazon,600);
 
-  // Mariposas
-  function crearMariposa(){
-    const m = document.createElement("div");
-    m.classList.add("mariposa");
-    m.innerHTML = "🦋";
-    m.style.left = Math.random()*70+"vw";
-    m.style.top = Math.random()*50+"vh";
-    document.body.appendChild(m);
-    setTimeout(()=> m.remove(), 6000);
+// Mensaje en el pasto
+const mensajeTexto = "🌻 ¡Feliz Día de las Flores Amarillas! 🌻";
+const mensajeDiv = document.getElementById('mensaje');
+let index = 0;
+function escribirMensaje() {
+  if(index < mensajeTexto.length){
+    mensajeDiv.style.opacity = 1;
+    mensajeDiv.innerHTML += mensajeTexto.charAt(index);
+    index++;
+    setTimeout(escribirMensaje, 100);
   }
-  setInterval(crearMariposa, 4000);
+}
+setTimeout(escribirMensaje, 1000);
+
+// Mariposas
+function crearMariposa(){
+  const m = document.createElement("div");
+  m.classList.add("mariposa");
+  m.innerHTML = "🦋";
+  m.style.left = Math.random()*70+"vw";
+  m.style.top = Math.random()*50+"vh";
+  document.body.appendChild(m);
+  setTimeout(()=> m.remove(), 6000);
+}
+setInterval(crearMariposa, 4000);
 </script>
 
 </body>
+</html>
+
 </html>
